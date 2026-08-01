@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thanks for Playing</title>
+
+    <link rel="stylesheet" href="{% static 'game/style.css' %}">
+
+</head>
+
+<body>
+
+<div class="goodbye-container">
+
+    <div class="goodbye-card">
+
+        <div class="icon">
+            👋
+        </div>
+
+        <h1>Thank You!</h1>
+
+        <p class="message">
+            Thanks for playing <strong>Snake Water Gun</strong>.
+            <br><br>
+            We hope you had fun competing against the computer.
+            Come back anytime for another match!
+        </p>
+
+        <div class="button-group">
+
+            <a href="{% url 'home' %}">
+                <button class="play-btn">
+                    🎮 Play Again
+                </button>
+            </a>
+
+            <a href="https://github.com/sohelidutta2006-bot" target="_blank">
+                <button class="github-btn">
+                    ⭐ Visit GitHub
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

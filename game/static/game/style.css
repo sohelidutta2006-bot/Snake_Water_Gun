@@ -1,45 +1,99 @@
-body{
+*{
     margin:0;
     padding:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
+    background:linear-gradient(-45deg,#1e3c72,#2a5298,#6a11cb,#2575fc);
+    background-size:400% 400%;
+    animation:gradientBG 12s ease infinite;
+    padding:20px;
+}
+
+@keyframes gradientBG{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
 }
 
 .container{
-    background:white;
-    padding:40px;
-    width:500px;
-    border-radius:15px;
+    width:700px;
+    max-width:95%;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:25px;
+    padding:35px;
     text-align:center;
-    box-shadow:0px 10px 30px rgba(0,0,0,0.3);
+    color:white;
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
 }
 
 h1{
-    color:#2a5298;
-    margin-bottom:10px;
+    font-size:40px;
+    margin-bottom:20px;
 }
 
 h2{
-    color:#333;
+    margin:20px 0;
 }
 
-button{
-    padding:12px 25px;
-    margin:10px;
-    font-size:18px;
+hr{
+    margin:30px 0;
     border:none;
-    border-radius:10px;
+    height:1px;
+    background:rgba(255,255,255,0.3);
+}
+
+/* Scoreboard */
+
+.scoreboard{
+    display:flex;
+    justify-content:space-around;
+    gap:15px;
+    margin:25px 0;
+    flex-wrap:wrap;
+}
+
+.scoreboard p{
+    background:rgba(255,255,255,0.15);
+    padding:15px 25px;
+    border-radius:15px;
+    font-size:20px;
+    min-width:150px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+/* Buttons */
+
+button{
+    padding:16px 30px;
+    margin:10px;
+    border:none;
+    border-radius:15px;
     cursor:pointer;
-    transition:0.3s;
-    color:white;
+    color:rgb(136, 198, 29);
+    font-size:20px;
+    font-weight:bold;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(25, 166, 129, 0.25);
 }
 
 button:hover{
-    transform:scale(1.08);
+    transform:translateY(-5px) scale(1.05);
 }
 
 .snake{
@@ -54,59 +108,276 @@ button:hover{
     background:#e74c3c;
 }
 
-hr{
-    margin:30px 0;
-}
+/* Result */
 
 .result{
     margin-top:20px;
-    font-size:24px;
-    font-weight:bold;
-    color:#2a5298;
-}
-
-/* ---------- Scoreboard ---------- */
-
-.scoreboard{
-    background:#f5f5f5;
-    border-radius:12px;
     padding:15px;
-    margin:20px 0;
-    box-shadow:0px 3px 10px rgba(0,0,0,0.1);
-}
-
-.scoreboard h2{
-    margin:0 0 15px;
-    color:#1e3c72;
-}
-
-.scoreboard p{
-    font-size:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.15);
+    font-size:26px;
     font-weight:bold;
-    margin:8px 0;
 }
 
-/* ---------- Choice Section ---------- */
+/* Play Again Button */
 
-h3{
-    color:#444;
-    margin:10px 0;
-}
 button[name="reset"]{
-    background: linear-gradient(45deg, #ff9800, #ff5722);
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px 35px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    background:linear-gradient(45deg,#02415d,#22c4ff);
+    margin-top:20px;
 }
 
 button[name="reset"]:hover{
-    transform: scale(1.08);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    transform:scale(1.08);
+}
+
+/* Responsive */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:30px;
+    }
+
+    button{
+        width:100%;
+        margin:10px 0;
+    }
+
+    .scoreboard{
+        flex-direction:column;
+    }
+
+}
+/* ===========================
+   Choice Cards
+=========================== */
+
+.choices{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.choice-card{
+    width:150px;
+    height:210px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    border:none;
+    border-radius:25px;
+    color:rgb(94, 153, 0);
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.choice-card:hover{
+
+    transform:translateY(-12px) scale(1.05);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+
+.choice-card .emoji{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+}
+
+.choice-card .title{
+
+    font-size:26px;
+
+    font-weight:bold;
+}
+
+.choice-card .desc{
+
+    margin-top:10px;
+
+    font-size:15px;
+
+    opacity:.9;
+}
+
+.choice-card.snake{
+
+    background:linear-gradient(135deg,#16a085,#27ae60);
+}
+
+.choice-card.water{
+
+    background:linear-gradient(135deg,#3498db,#2980b9);
+}
+
+.choice-card.gun{
+
+    background:linear-gradient(135deg,#e74c3c,#c0392b);
+}
+
+@media(max-width:700px){
+
+.choice-card{
+
+width:100%;
+
+height:170px;
+
+}
+
+}
+/* ===================================
+        Goodbye Page
+=================================== */
+
+.goodbye-container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.goodbye-card{
+
+    width:600px;
+
+    max-width:90%;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:25px;
+
+    padding:50px;
+
+    text-align:center;
+
+    color:rgb(13, 163, 130);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.goodbye-card .icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+.goodbye-card h1{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.message{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#000f5b;
+
+    margin-bottom:40px;
+
+}
+
+.button-group{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.play-btn{
+
+    background:linear-gradient(45deg,#08b6c2,#058edd);
+
+    padding:16px 30px;
+
+}
+
+.play-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.github-btn{
+
+    background:linear-gradient(45deg,#24292e,#57606a);
+
+    padding:16px 30px;
+
+}
+
+.github-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.button-group a{
+
+    text-decoration:none;
+
+}
+
+@media(max-width:650px){
+
+.button-group{
+
+flex-direction:column;
+
+}
+
+.play-btn,
+.github-btn{
+
+width:100%;
+
+}
+
+.goodbye-card{
+
+padding:35px 25px;
+
+}
+
+.goodbye-card h1{
+
+font-size:34px;
+
+}
+
+.message{
+
+font-size:18px;
+
+}
+
 }

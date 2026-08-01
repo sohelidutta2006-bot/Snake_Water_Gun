@@ -14,6 +14,13 @@
 <div class="container">
 
     <h1>🐍 Snake Water Gun 🔫</h1>
+    <br><br>
+
+<button class="quit-btn"
+        type="button"
+        onclick="confirmQuit()">
+    ❌ Quit Game
+</button>
 
     <!-- Scoreboard -->
     <div class="scoreboard">
@@ -40,20 +47,44 @@
         <h2>Choose your move</h2>
 
         <form method="POST">
-            {% csrf_token %}
 
-            <button class="snake" type="submit" name="choice" value="snake">
-                🐍 Snake
-            </button>
+    {% csrf_token %}
 
-            <button class="water" type="submit" name="choice" value="water">
-                💧 Water
-            </button>
+    <div class="choices">
 
-            <button class="gun" type="submit" name="choice" value="gun">
-                🔫 Gun
-            </button>
-        </form>
+        <button class="choice-card snake" type="submit" name="choice" value="snake">
+
+            <div class="emoji">🐍</div>
+
+            <div class="title">Snake</div>
+
+            <div class="desc">Drinks Water</div>
+
+        </button>
+
+        <button class="choice-card water" type="submit" name="choice" value="water">
+
+            <div class="emoji">💧</div>
+
+            <div class="title">Water</div>
+
+            <div class="desc">Drowns Gun</div>
+
+        </button>
+
+        <button class="choice-card gun" type="submit" name="choice" value="gun">
+
+            <div class="emoji">🔫</div>
+
+            <div class="title">Gun</div>
+
+            <div class="desc">Shoots Snake</div>
+
+        </button>
+
+    </div>
+
+</form>
 
         <hr>
 
@@ -72,6 +103,14 @@
     {% endif %}
 
 </div>
+<script>
+function confirmQuit(){
 
+    if(confirm("Are you sure you want to quit the game?")){
+        window.location.href="{% url 'goodbye' %}";
+    }
+
+}
+</script>
 </body>
 </html>
