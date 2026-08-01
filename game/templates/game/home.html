@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Water Gun</title>
+
+    <link rel="stylesheet" href="{% static 'game/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🐍 Snake Water Gun 🔫</h1>
+
+    <!-- Scoreboard -->
+    <div class="scoreboard">
+        <h2>🏆 Scoreboard</h2>
+
+        <p>👤 You : {{ user_score }}</p>
+        <p>🤖 Computer : {{ computer_score }}</p>
+        <p>🤝 Draw : {{ draw_score }}</p>
+    </div>
+
+    {% if game_over %}
+
+        <h2 class="result">{{ winner }}</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" name="reset">
+                🔄 Play Again
+            </button>
+        </form>
+
+    {% else %}
+
+        <h2>Choose your move</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button class="snake" type="submit" name="choice" value="snake">
+                🐍 Snake
+            </button>
+
+            <button class="water" type="submit" name="choice" value="water">
+                💧 Water
+            </button>
+
+            <button class="gun" type="submit" name="choice" value="gun">
+                🔫 Gun
+            </button>
+        </form>
+
+        <hr>
+
+        {% if user_choice %}
+            <h3>👤 Your Choice : {{ user_choice|title }}</h3>
+        {% endif %}
+
+        {% if computer_choice %}
+            <h3>🤖 Computer Choice : {{ computer_choice|title }}</h3>
+        {% endif %}
+
+        {% if result %}
+            <h2 class="result">{{ result }}</h2>
+        {% endif %}
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
