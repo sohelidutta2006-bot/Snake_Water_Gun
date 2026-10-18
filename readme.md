@@ -118,9 +118,7 @@ python manage.py runserver
 
 Open your browser and visit:
 
-```
-https://snake-water-gun-72n3.onrender.com/
-```
+
 
 ---
 
